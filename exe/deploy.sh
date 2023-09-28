@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Colors
-GREEN='\032[0;31m'
-RED='\033[0;31m'
-NO_COLOR='\033[0m'
-
 # Exit on any error
 set -e
 
@@ -22,6 +17,7 @@ for dir in $(ls -a ./); do
     [ "$dir" = "." ] && continue
     [ "$dir" = ".." ] && continue
     [ "$dir" = "dist" ] && continue
+    [ "$dir" = "node_modules" ] && continue
     [ "$dir" = ".git" ] && continue
     rm -rf "$dir"
 done
@@ -33,10 +29,12 @@ for file in ./*; do
 done
 
 git add -A
+# Don't let node_modules get through
+git reset node_modules
 git commit -m "Deploying app..."
-git push --set-upstream origin gh-pages
+git push --force --set-upstream origin gh-pages
 
-printf "\n\n${GREEN}Successfully deployed application to GitHub Pages!${NO_COLOR}\n\n"
+echo -e "\n\033[36mSuccessfully\033[0m deployed application to GitHub Pages!\n"
 
 git switch main
 

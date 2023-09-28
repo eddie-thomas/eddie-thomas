@@ -14,20 +14,21 @@ git switch -c gh-pages
 
 # Loop through source files and remove them
 for dir in $(ls -a ./); do
-    [ "$dir" = "." ] && continue
-    [ "$dir" = ".." ] && continue
-    [ "$dir" = "dist" ] && continue
-    [ "$dir" = "node_modules" ] && continue
-    [ "$dir" = ".git" ] && continue
-    [ "$dir" = ".gitignore" ] && continue
+    case "$dir" in
+        "."|".."|".git"|".gitignore"|"dist"|"node_modules"|"public")
+        continue ;;
+    *)
+    esac
+
     rm -rf "$dir"
 done
 
 # Move build files up
-cd dist
-for file in ./*; do
-    mv "$file" ..
-done
+mv -v ./dist/* .
+mv -v ./public/* .
+
+rmdir dist
+rmdir public
 
 git add -A
 # Don't let node_modules get through

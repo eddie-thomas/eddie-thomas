@@ -19,6 +19,7 @@ for dir in $(ls -a ./); do
     [ "$dir" = "dist" ] && continue
     [ "$dir" = "node_modules" ] && continue
     [ "$dir" = ".git" ] && continue
+    [ "$dir" = ".gitignore" ] && continue
     rm -rf "$dir"
 done
 
@@ -30,7 +31,7 @@ done
 
 git add -A
 # Don't let node_modules get through
-git reset node_modules
+git reset .gitignore
 git commit -m "Deploying app..."
 git push --force --set-upstream origin gh-pages
 

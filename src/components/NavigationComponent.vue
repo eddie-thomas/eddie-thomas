@@ -16,7 +16,6 @@ export default {
      * Change event for routing
      */
     handleChange(route: string) {
-      console.log('changed')
       router.push(route)
     }
   }

@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@rive-app/canvas": "^2.4.3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },

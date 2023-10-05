@@ -1,11 +1,6 @@
 <template>
-  <main>
-    <DesignComponent src="/desktop.riv" />
-    <NavigationComponent />
-  </main>
+  <div class="content">
+    Home
+  </div>
 </template>
 
-<script setup lang="ts">
-import NavigationComponent from '@/components/NavigationComponent.vue'
-import DesignComponent from '../components/DesignComponent.vue'
-</script>

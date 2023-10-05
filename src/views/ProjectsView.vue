@@ -1,5 +1,3 @@
 <template>
-    <div class="content" id="projects">
-        Projects
-    </div>
+  <div class="content" id="projects">Projects</div>
 </template>

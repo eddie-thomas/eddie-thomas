@@ -15,6 +15,9 @@ import ProjectsView from './views/ProjectsView.vue'
 let firstScrollTop: number | undefined
 let lastScrollTop: number | undefined
 
+/**
+ * Scroll all the way up or down, depending on recent scroll information
+ */
 function scrollToTopOrBottom() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop
   if (firstScrollTop === undefined) {

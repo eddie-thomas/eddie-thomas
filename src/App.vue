@@ -38,7 +38,7 @@ function scrollToTopOrBottom() {
     lastScrollTop = undefined
 
     scrollElementIntoView(elementSelector)
-    setTimeout(() => (onscroll = scrollToTopOrBottom), 100)
+    setTimeout(() => (onscroll = scrollToTopOrBottom), 500)
   }
 }
 

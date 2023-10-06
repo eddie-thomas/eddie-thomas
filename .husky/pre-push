@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run deploy && npm run prepare
+npm run deploy && npm run prepare && chmod +x ./.husky/pre-push

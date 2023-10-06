@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "deploy": "bash ./exe/deploy.sh",
+    "deploy": "bash ./exe/deploy.sh && npm run prepare && chmod +x ./.husky/pre-push",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",

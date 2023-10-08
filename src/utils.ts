@@ -53,6 +53,7 @@ function mobileScrollEvent() {
 
   /** Reference for starting Y pos on mobile */
   let startY: number
+  let currentY: number | undefined
 
   function touchstart(event: TouchEvent) {
     startY = event.touches[0].clientY
@@ -62,6 +63,12 @@ function mobileScrollEvent() {
     const deltaY = event.touches[0].clientY - startY
     const d = document.getElementById('mobile')
     if (d) d.innerHTML = `Value: ${deltaY}`
+    if (currentY === undefined) {
+      currentY = deltaY
+    } else {
+      startY = deltaY
+      currentY = undefined
+    }
   }
 }
 

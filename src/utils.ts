@@ -47,8 +47,8 @@ function isMobile() {
  * Scroll event for mobile
  */
 function mobileScrollEvent() {
-  window.addEventListener('touchend', touchend)
-  window.addEventListener('touchstart', touchstart)
+  document.body.addEventListener('touchend', touchend)
+  document.body.addEventListener('touchstart', touchstart)
 
   /** Reference for starting Y pos on mobile */
   let startY: number

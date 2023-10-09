@@ -63,8 +63,9 @@ function mobileScrollEvent() {
   }
 
   function touchmove(event: TouchEvent) {
-    const deltaY = event.touches[0].clientY - startY
-    if (d) d.innerHTML = `Value: deltaY: ${deltaY}`
+    event.preventDefault()
+    // const deltaY = event.touches[0].clientY - startY
+    // if (d) d.innerHTML = `Value: deltaY: ${deltaY}`
   }
 
   function touchend(event: TouchEvent) {

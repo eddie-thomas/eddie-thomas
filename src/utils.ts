@@ -58,6 +58,7 @@ function mobileScrollEvent() {
   }
 
   function touchmove(event: TouchEvent) {
+    event.preventDefault()
     const deltaY = event.touches[0].clientY - startY
     const d = document.getElementById('mobile')
     if (d) d.innerHTML = `Value: ${deltaY}`

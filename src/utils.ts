@@ -49,34 +49,18 @@ function isMobile() {
 function mobileScrollEvent() {
   document.body.addEventListener('touchmove', touchmove)
   document.body.addEventListener('touchstart', touchstart)
-  document.body.addEventListener('touchend', touchend)
 
   /** Reference for starting Y pos on mobile */
   let startY: number
-  let endY: number
-
-  const d = document.getElementById('mobile')
 
   function touchstart(event: TouchEvent) {
     startY = event.touches[0].clientY
-    if (d) d.innerHTML = `Value: StartY: ${startY}`
   }
 
   function touchmove(event: TouchEvent) {
-    event.preventDefault()
-    // const deltaY = event.touches[0].clientY - startY
-    // if (d) d.innerHTML = `Value: deltaY: ${deltaY}`
-  }
-
-  function touchend(event: TouchEvent) {
-    endY = event.touches[0].clientY
-    if (d) d.innerHTML = `Value: StartY: ${startY}, EndY: ${endY}`
-    /**
-     * - Up is a negative number
-     * - Down is a positive number
-     */
-    // const elementSelector = startY - endY > 0 ? '#bottom' : '#top'
-    // scrollElementIntoView(elementSelector)
+    const deltaY = event.touches[0].clientY - startY
+    const d = document.getElementById('mobile')
+    if (d) d.innerHTML = `Value: ${deltaY}`
   }
 }
 

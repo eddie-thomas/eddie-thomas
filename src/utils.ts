@@ -5,7 +5,6 @@
  * @see https://stackoverflow.com/questions/59951348/how-can-i-trigger-onwheel-event-up-and-down-effect-in-javascript
  */
 function browserScrollEvent(event: WheelEvent) {
-  console.log('wheel', event.deltaY)
   event.preventDefault()
   const elementSelector = event.deltaY > 0 ? '#bottom' : '#top'
   scrollElementIntoView(elementSelector)
@@ -48,27 +47,27 @@ function isMobile() {
  * Scroll event for mobile
  */
 function mobileScrollEvent() {
-  document.body.addEventListener('touchmove', touchmove)
-  document.body.addEventListener('touchstart', touchstart)
+  window.addEventListener('touchend', touchend)
+  window.addEventListener('touchstart', touchstart)
 
   /** Reference for starting Y pos on mobile */
   let startY: number
-  let currentY: number | undefined
+  let endY: number
 
   function touchstart(event: TouchEvent) {
     startY = event.touches[0].clientY
   }
 
-  function touchmove(event: TouchEvent) {
-    const deltaY = event.touches[0].clientY - startY
+  function touchend(event: TouchEvent) {
+    endY = event.touches[0].clientY
     const d = document.getElementById('mobile')
-    if (d) d.innerHTML = `Value: ${deltaY}`
-    if (currentY === undefined) {
-      currentY = deltaY
-    } else {
-      startY = deltaY
-      currentY = undefined
-    }
+    if (d) d.innerHTML = `Value: ${startY - endY}`
+    /**
+     * - Up is a negative number
+     * - Down is a positive number
+     */
+    const elementSelector = startY - endY > 0 ? '#bottom' : '#top'
+    scrollElementIntoView(elementSelector)
   }
 }
 

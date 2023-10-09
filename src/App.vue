@@ -1,7 +1,4 @@
 <template>
-  <div id="mobile-container">
-    <div id="mobile">Value:</div>
-  </div>
   <div id="app">
     <div id="top"></div>
 
@@ -23,13 +20,4 @@ if (isMobile()) {
 }
 </script>
 
-<style scoped>
-#mobile-container {
-  position: relative;
-}
-
-#mobile {
-  position: absolute;
-  transform: translate(50%, 50%);
-}
-</style>
+<style scoped></style>

@@ -1,8 +1,13 @@
 /**
+ * Keyboard events for scrolling
+ */
+function browserKeyEvent(event: KeyboardEvent) {
+  if (event.key === 'ArrowUp') scrollElementIntoView('#top')
+  if (event.key === 'ArrowDown') scrollElementIntoView('#bottom')
+}
+
+/**
  * Scroll all the way up or down, depending on recent scroll information
- *
- * @see https://stackoverflow.com/questions/71153674/get-deltay-from-scroll-event
- * @see https://stackoverflow.com/questions/59951348/how-can-i-trigger-onwheel-event-up-and-down-effect-in-javascript
  */
 function browserScrollEvent(event: WheelEvent) {
   event.preventDefault()
@@ -60,7 +65,7 @@ function mobileScrollEvent() {
   function touchmove(event: TouchEvent) {
     event.preventDefault()
     const deltaY = event.touches[0].clientY - startY
-    const elementSelector = deltaY > 0 ? '#bottom' : '#top'
+    const elementSelector = deltaY < 0 ? '#bottom' : '#top'
     scrollElementIntoView(elementSelector)
   }
 }
@@ -80,6 +85,7 @@ function scrollElementIntoView(identifier: string): void {
 }
 
 export {
+  browserKeyEvent,
   browserScrollEvent,
   isHTMLCanvasElement,
   isMobile,

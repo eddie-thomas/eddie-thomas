@@ -9,13 +9,14 @@
 </template>
 
 <script setup lang="ts">
-import { browserScrollEvent, isMobile, mobileScrollEvent } from './utils'
+import { browserKeyEvent, browserScrollEvent, isMobile, mobileScrollEvent } from './utils'
 import HomeView from './views/HomeView.vue'
 import ProjectsView from './views/ProjectsView.vue'
 
 if (isMobile()) {
   mobileScrollEvent()
 } else {
+  window.addEventListener('keydown', browserKeyEvent)
   window.addEventListener('wheel', browserScrollEvent, { passive: false })
 }
 </script>

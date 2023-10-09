@@ -47,7 +47,7 @@ function isMobile() {
  * Scroll event for mobile
  */
 function mobileScrollEvent() {
-  document.body.addEventListener('touchmove', touchmove)
+  document.body.addEventListener('touchmove', touchmove, { passive: false })
   document.body.addEventListener('touchstart', touchstart)
 
   /** Reference for starting Y pos on mobile */

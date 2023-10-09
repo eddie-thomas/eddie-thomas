@@ -47,21 +47,23 @@ function isMobile() {
  * Scroll event for mobile
  */
 function mobileScrollEvent() {
-  document.body.addEventListener('touchend', touchend)
   document.body.addEventListener('touchstart', touchstart)
+  document.body.addEventListener('touchend', touchend)
 
   /** Reference for starting Y pos on mobile */
   let startY: number
   let endY: number
 
+  const d = document.getElementById('mobile')
+
   function touchstart(event: TouchEvent) {
     startY = event.touches[0].clientY
+    if (d) d.innerHTML = `Value: StartY: ${startY}`
   }
 
   function touchend(event: TouchEvent) {
     endY = event.touches[0].clientY
-    const d = document.getElementById('mobile')
-    if (d) d.innerHTML = `Value: ${startY - endY}`
+    if (d) d.innerHTML = `Value: StartY: ${startY}, EndY: ${endY}`
     /**
      * - Up is a negative number
      * - Down is a positive number

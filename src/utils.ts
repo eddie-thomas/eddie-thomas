@@ -47,6 +47,7 @@ function isMobile() {
  * Scroll event for mobile
  */
 function mobileScrollEvent() {
+  document.body.addEventListener('touchmove', touchmove)
   document.body.addEventListener('touchstart', touchstart)
   document.body.addEventListener('touchend', touchend)
 
@@ -61,6 +62,11 @@ function mobileScrollEvent() {
     if (d) d.innerHTML = `Value: StartY: ${startY}`
   }
 
+  function touchmove(event: TouchEvent) {
+    const deltaY = event.touches[0].clientY - startY
+    if (d) d.innerHTML = `Value: deltaY: ${deltaY}`
+  }
+
   function touchend(event: TouchEvent) {
     endY = event.touches[0].clientY
     if (d) d.innerHTML = `Value: StartY: ${startY}, EndY: ${endY}`
@@ -68,8 +74,8 @@ function mobileScrollEvent() {
      * - Up is a negative number
      * - Down is a positive number
      */
-    const elementSelector = startY - endY > 0 ? '#bottom' : '#top'
-    scrollElementIntoView(elementSelector)
+    // const elementSelector = startY - endY > 0 ? '#bottom' : '#top'
+    // scrollElementIntoView(elementSelector)
   }
 }
 

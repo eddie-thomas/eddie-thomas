@@ -1,18 +1,31 @@
-/**
- * Keyboard events for scrolling
- */
-function browserKeyEvent(event: KeyboardEvent) {
-  if (event.key === 'ArrowUp') scrollElementIntoView('#top')
-  if (event.key === 'ArrowDown') scrollElementIntoView('#bottom')
-}
+import { Page, state } from './state'
 
 /**
- * Scroll all the way up or down, depending on recent scroll information
+ *
+ *
+ * @param page - State object representing the page
  */
-function browserScrollEvent(event: WheelEvent) {
-  event.preventDefault()
-  const elementSelector = event.deltaY > 0 ? '#bottom' : '#top'
-  scrollElementIntoView(elementSelector)
+function desktopScrollEvent() {
+  window.addEventListener('keydown', browserKeyEvent)
+  window.addEventListener('wheel', browserScrollEvent, { passive: false })
+
+  /**
+   * Keyboard events for scrolling
+   */
+  function browserKeyEvent(event: KeyboardEvent) {
+    if (event.key === 'ArrowUp') scrollElementIntoView('#top')
+    if (event.key === 'ArrowDown') scrollElementIntoView('#bottom')
+  }
+
+  /**
+   * Scroll all the way up or down, depending on recent scroll information
+   */
+  function browserScrollEvent(event: WheelEvent) {
+    event.preventDefault()
+    const elementSelector = event.deltaY > 0 ? '#bottom' : '#top'
+    state.page = event.deltaY > 0 ? Page.Projects : Page.Home
+    scrollElementIntoView(elementSelector)
+  }
 }
 
 /**
@@ -58,14 +71,25 @@ function mobileScrollEvent() {
   /** Reference for starting Y pos on mobile */
   let startY: number
 
+  /**
+   * Handler for touch start
+   *
+   * @param event - Touch event
+   */
   function touchstart(event: TouchEvent) {
     startY = event.touches[0].clientY
   }
 
+  /**
+   * Handler for touch moves
+   *
+   * @param event - Touch event
+   */
   function touchmove(event: TouchEvent) {
     event.preventDefault()
     const deltaY = event.touches[0].clientY - startY
     const elementSelector = deltaY < 0 ? '#bottom' : '#top'
+    state.page = deltaY < 0 ? Page.Projects : Page.Home
     scrollElementIntoView(elementSelector)
   }
 }
@@ -85,8 +109,7 @@ function scrollElementIntoView(identifier: string): void {
 }
 
 export {
-  browserKeyEvent,
-  browserScrollEvent,
+  desktopScrollEvent,
   isHTMLCanvasElement,
   isMobile,
   mobileScrollEvent,

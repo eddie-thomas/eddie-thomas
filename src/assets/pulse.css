@@ -1,0 +1,56 @@
+@keyframes pulseAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes pulseAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes pulseAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes pulseAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.pulse-animation {
+  -webkit-animation: pulseAnimation 3s infinite;
+  -moz-animation: pulseAnimation 3s infinite;
+  -o-animation: pulseAnimation 3s infinite;
+  animation: pulseAnimation 3s infinite;
+  animation-timing-function: ease-in-out;
+
+  font-weight: 900;
+  position: fixed;
+  right: 10px;
+  top: 0;
+}
